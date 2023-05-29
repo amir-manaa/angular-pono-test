@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserRole } from '@app/shared/enums/UserRole';
 import { validateEmail } from '@app/shared/validators/validators';
 import { CreateAccountService } from '@app/pages/auth/create-account/services/create-account.service';
 import { Subject, takeUntil } from 'rxjs';
-
+import { validatePassword } from '@app/shared/validators/validators';
 
 @Component({
   selector: 'app-create-account',
@@ -13,7 +13,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./create-account.component.scss'],
   providers: [CreateAccountService]
 })
-export class CreateAccountComponent implements OnInit, OnDestroy {
+export class CreateAccountComponent implements OnInit {
 
   private destroy$!: Subject<boolean>;
   creatAccountForm!: FormGroup;
@@ -21,6 +21,7 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
   userRole = UserRole;
   successAdd = false;
   userExist = false;
+  newPassword: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,15 +45,16 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
       this.creatAccountForm.get('email')!.value,
       this.creatAccountForm.get('password')!.value,
       this.creatAccountForm.get('role')!.value
-    ).pipe(
-      takeUntil(this.destroy$)
-    )
-    .subscribe(
+    ).subscribe(
       () => {
       this.router.navigate(['/login']);
     }, () => {
       this.userExist = true;
     })
+  }
+
+  checkPassword() {
+    this.newPassword = this.creatAccountForm.get('password')!.value;
   }
 
   get form() {
@@ -63,12 +65,8 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
     this.creatAccountForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, validateEmail]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, validatePassword]],
       role: [UserRole.Teacher, [Validators.required]],
     })
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
   }
 }

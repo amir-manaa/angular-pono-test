@@ -17,7 +17,7 @@ export class CreateAccountService {
             password: password,
             role: role
         }
-        console.log(newUser);
+        
         return this.addNewUser(newUser);
     }
 

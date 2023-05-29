@@ -41,6 +41,8 @@ export class AddBookComponent implements OnInit {
   }
 
   addBook() {
+    this.hideNotifBlocks();
+    
     this.submitted = true;
     if (this.addBookForm.invalid) {
       return;
@@ -63,4 +65,8 @@ export class AddBookComponent implements OnInit {
     )
   }
 
+  private hideNotifBlocks() {
+    this.renderer.addClass(this.successAlter.nativeElement, 'hide');
+    this.renderer.addClass(this.errorAlert.nativeElement, 'hide');
+  }
 }

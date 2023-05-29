@@ -12,7 +12,8 @@
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" formControlName='password'>
+          <input type="password" class="form-control" (input)="checkPassword()" formControlName='password'>
+          <app-password-check [newPassword]=newPassword></app-password-check>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Role : </label>

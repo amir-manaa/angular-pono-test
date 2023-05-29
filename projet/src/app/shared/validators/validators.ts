@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 export function validateEmail(control: FormControl) {
   const regex = new RegExp(/^\w+([.+-]|\w+)*@\w+([.-]\w+)*\.\w{2,3}$/);

@@ -1,0 +1,1 @@
+export { PasswordCheckComponent } from '@app/shared/components/password-check/password-check.component';

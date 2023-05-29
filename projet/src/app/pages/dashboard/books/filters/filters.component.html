@@ -1,0 +1,33 @@
+<div class="filter-container mb-20">
+  <form class="form-container col-6" [formGroup]='filtersForm' (ngSubmit)='search()' >
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre</label>
+      <input type="text" id="title" class="form-control" formControlName='title'>
+    </div>
+
+    <div class="mb-3">
+        <label for="author" class="form-label">Auteur</label>
+        <input type="text" id="author" class="form-control" formControlName='author'>
+    </div>
+
+    <div class="mb-3">
+        <mat-radio-group aria-label="Select an option" formControlName='state'>
+          <mat-radio-button [value]=true >Nouceau</mat-radio-button>
+          <mat-radio-button [value]=false >occasion</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Prix</label>
+        <mat-form-field>
+          <mat-select formControlName="price">
+            <mat-option value="5">moin de 5 &euro;</mat-option>
+            <mat-option value="5 and 10">entre de 5 et 10 &euro;</mat-option>
+            <mat-option value="10">supérieur à 10	&euro;</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+  </form>
+</div>

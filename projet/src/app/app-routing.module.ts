@@ -29,7 +29,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) 
   },
-  { path: '**', redirectTo: '/' }
+  { path: '**', redirectTo: '/dashboard' }
   ];
 
 @NgModule({

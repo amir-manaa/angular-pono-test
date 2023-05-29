@@ -1,9 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { LoginService } from '@app/pages/auth/login/services/login-service';
-import { Subject, takeUntil } from 'rxjs';
-
 
 @Component({
   selector: 'app-login',
@@ -11,9 +9,8 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./login.component.scss'],
   providers: [LoginService]
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
-  private destroy$!: Subject<boolean>;
   loginForm!: FormGroup;
   submitted = false;
   errorMessage = null;
@@ -37,9 +34,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     const email = this.loginForm.get('email')!.value;
     const password = this.loginForm.get('password')!.value;
     this.loginService.login(email, password)
-    .pipe(
-      takeUntil(this.destroy$)
-    )
     .subscribe(
       success => {
       this.router.navigate(['/dashboard']);
@@ -50,16 +44,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private creatLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['amir@gmail.com', [Validators.required]],
-      password: ['442241', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     })
   }
 
   get form() {
     return this.loginForm;
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
   }
 }

@@ -8,8 +8,8 @@ import {
 import { BooksComponent } from '@app/pages/components';
 const routes: Routes = [
   { path: '', component: DashboardComponent, children: [
-    { path: 'books', component: BooksComponent },
-    { path: 'add-book', component: AddBookComponent }
+    { path: 'books', title: 'Books', component: BooksComponent },
+    { path: 'add-book', title: 'Add Book', component: AddBookComponent }
   ] 
 }
 ];

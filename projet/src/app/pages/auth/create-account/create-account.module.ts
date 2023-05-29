@@ -5,10 +5,13 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { CreateAccountRoutingModule } from './create-account-routing.module';
 import { CreateAccountComponent } from './create-account.component';
 
+import { PasswordCheckComponent } from '@app/shared/components/components';
+
 
 @NgModule({
   declarations: [
-    CreateAccountComponent
+    CreateAccountComponent,
+    PasswordCheckComponent
   ],
   imports: [
     CommonModule,

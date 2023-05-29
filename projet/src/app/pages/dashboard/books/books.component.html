@@ -1,1 +1,31 @@
-<p>books works!</p>
+<h1 class="text-center">Liste des livres</h1>
+
+<app-filters (filtersEvent)="searchBooks($event)"></app-filters>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tite</th>
+        <th scope="col">Auteur</th>
+        <th scope="col">état</th>
+        <th scope="col">Prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="(books | async)?.length == 0">
+        <p class="mt-20">pas de livre enregistré</p>
+      </ng-container>
+      <tr *ngFor="let book of (books | async)">
+        <th scope="row">{{ book.id }}</th>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>
+          <ng-container *ngIf="book.new; else oldBook">Nouveau</ng-container>
+          <ng-template #oldBook>Occasion</ng-template>
+        </td>
+        <td>{{ book.price | currency:'EUR':true }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

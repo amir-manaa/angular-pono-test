@@ -14,13 +14,15 @@ import {
   DashboardService,
   BookService
  } from '@app/pages/dashboard/services/services';
+import { FiltersComponent } from './books/filters/filters.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     BooksComponent,
-    AddBookComponent
+    AddBookComponent,
+    FiltersComponent
   ],
   imports: [
     CommonModule,
