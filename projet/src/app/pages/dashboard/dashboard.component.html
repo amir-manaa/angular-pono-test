@@ -1,0 +1,23 @@
+<p style="margin:0">
+    <mat-toolbar class="dashboard-toolbar">
+      <button mat-button [matMenuTriggerFor]="menu">{{ userProfile.name }} | {{ userRole[userProfile.role] }}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">Déconnexion</button>
+      </mat-menu>
+    </mat-toolbar>
+</p>
+
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened="true">
+      <a class="sidenav-item" routerLink="/dashboard/books">Liste des livres</a>
+      <a class="sidenav-item" routerLink="/dashboard/add-book">Ajouter un livre</a>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <div class="container mt-20 mb-20 ">
+        <div class="row">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-container>

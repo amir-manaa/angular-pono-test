@@ -1,0 +1,44 @@
+<h1 class="text-center">Ajouter un livre</h1>
+<div class="d-flex justify-content-center align-self-center">
+<form class="form-container col-6" [formGroup]='addBookForm' (ngSubmit)='addBook()' >
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre</label>
+      <input type="text" id="title" class="form-control" formControlName='title'>
+    </div>
+
+    <div class="mb-3">
+        <label for="author" class="form-label">Auteur</label>
+        <input type="text" id="author" class="form-control" formControlName='author'>
+    </div>
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Prix</label>
+        <input type="number" id="price" class="form-control" formControlName='price'>
+    </div>
+
+
+    <div class="mb-3">
+        <mat-radio-group aria-label="Select an option" formControlName='new'>
+            <mat-radio-button [value]=true >Nouceau</mat-radio-button>
+            <mat-radio-button [value]=false >occasion</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <ng-container *ngIf="submitted && form.invalid">
+      <div class="alert alert-warning">
+        veuillez vérifier votre saisie
+      </div>
+    </ng-container>
+
+    <div type="success" class="alert alert-success hide" #successAlter>
+        livre ajoutée avec succès
+      </div>
+
+      <div type="danger" class="alert alert-warning hide" #errorAlert>
+        un problème est survenu
+      </div>
+
+    
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+  </form>
+</div>

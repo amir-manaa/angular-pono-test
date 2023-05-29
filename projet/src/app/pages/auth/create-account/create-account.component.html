@@ -1,0 +1,49 @@
+<h1 class="text-center">Creation compte</h1>
+<div class="d-flex justify-content-center align-self-center">
+    <form class="form-container col-6" [formGroup]='creatAccountForm' (ngSubmit)='submit()' >
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nom et prénom</label>
+        <input type="email" class="form-control" formControlName='name' aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" formControlName='email' aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" formControlName='password'>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Role : </label>
+          <select formControlName='role'>
+            <option [value]="userRole.Teacher" selected>Teacher</option>
+            <option [value]="userRole.Student" >Student</option>
+          </select>
+        </div>
+
+        <ng-container *ngIf="submitted && form.invalid">
+          <div class="alert alert-warning">
+            veuillez vérifier votre saisie
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="submitted && userExist">
+          <div class="alert alert-warning">
+            l'adresse e-mail existe déjà
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="successAdd">
+          <div class="alert alert-success">
+            utilisateur ajouté avec succès, cliquez <a routerLink="/login">ici</a> pour vous connecter
+          </div>
+        </ng-container>
+
+        <button type="submit" class="btn btn-primary">Créer un compte</button>
+
+        <div class="mb-3">
+          <small>si vous avez déjà un compte, <a routerLink="/login">identifiez-vous</a></small>
+        </div>
+      </form>
+</div>

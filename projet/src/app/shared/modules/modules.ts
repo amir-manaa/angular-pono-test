@@ -1,0 +1,1 @@
+export { AngularMaterialModule } from '@app/shared/modules/angular-material.module';
